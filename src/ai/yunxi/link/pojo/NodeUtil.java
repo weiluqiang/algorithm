@@ -6,6 +6,10 @@ import java.util.List;
 public class NodeUtil {
 
     public static Node createLinkNode(int start, int end, int step) {
+        return createLinkNode(start, end, step, false);
+    }
+
+    public static Node createLinkNode(int start, int end, int step, boolean isLoop) {
         Node prev = null;
         Node head = null;
         for (int i = start; i <= end; i += step) {
@@ -17,6 +21,7 @@ public class NodeUtil {
 
             prev = node;
         }
+        if (isLoop) prev.next = head;
         return head;
     }
 
@@ -26,6 +31,16 @@ public class NodeUtil {
             list.add(head.value);
             head = head.next;
         }
+        System.out.println(list);
+    }
+
+    public static void printLoopLinkNode(Node head) {
+        List<Integer> list = new ArrayList<>();
+        Node node = head;
+        do {
+            list.add(node.value);
+            node = node.next;
+        } while (node != head);
         System.out.println(list);
     }
 

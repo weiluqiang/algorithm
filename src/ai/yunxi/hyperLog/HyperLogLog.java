@@ -1,5 +1,13 @@
 package ai.yunxi.hyperLog;
 
+/**
+ * HyperLogLog算法经常在数据库中被用来统计某一字段的Distinct Value（简称DV）
+ * HyperLogLog算法来源于论文《HyperLogLog the analysis of a near-optimal cardinality estimation algorithm》
+ * 可以使用固定大小的字节计算任意大小的DV
+ * 基数就是指一个集合中不同值的数目，比如[a,b,c,d]的基数就是4，[a,b,c,d,a]的基数还是4，因为a重复了一个，不算。
+ * 基数也可以称之为Distinct Value，简称DV。
+ * HyperLogLog算法就是用来计算基数的。
+ */
 public class HyperLogLog {
 
     private final RegisterSet registerSet;
@@ -128,7 +136,7 @@ public class HyperLogLog {
         //集合中只有下面这些元素
         hyperLogLog.offer("hhh");
         hyperLogLog.offer("mmm");
-        hyperLogLog.offer("ccc");
+        hyperLogLog.offer("mmm");
         //估算基数
         System.out.println(hyperLogLog.cardinality());
     }
