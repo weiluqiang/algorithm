@@ -32,28 +32,42 @@ public class JosephusProblem {
         if (head == null || head.next == head || m <= 1) return head;
 
         int count = 0;
-        Node node = head;
-        Node prev = head;
-        while (node != null) {
+        Node now = head;//当前节点
+        Node prev = head;//上一节点
+        while (now != null) {
             if (++count == m) {
-                prev.next = node.next;
+                System.out.println(now.value);
+                prev.next = now.next;
                 count = 0;
             } else {
-                prev = node;
+                prev = now;
             }
-            node = node.next;
+            now = now.next;
 
-            if (node.next == node) break;
+            if (now.next == now) break;
         }
-        return node;
+        return now;
     }
 
     /**
-     * 进阶方法不采用循环遍历删除，而是采用数学归纳法
-     * 1.若环中只有1个节点，则幸存节点只能是它自己，记为Num(1)=1
-     * 2.若环中有2个节点，则幸存节点与m有关，记为Num(2);
-     * 3.若环中有n-1个节点，幸存节点为Num(n-1)，环中有n个节点，幸存节点为Num(n)
-     * 4.分析Num(n-1)与Num(n)的关系：
+     * 普通方法需要删除n-1个节点，每次删除遍历m次，时间复杂度为O(m*n)
+     * 进阶方法采用数学归纳法：
+     * 假如链表为1->2->3->4->5，链表节点数n=5，m=3，最后可知节点4会存活
+     * 1.首先，如果链表的节点数为n，我们做如下定义：从链表头节点开始编号，记为1，下一个节点为2，...，一直到n
+     * 2.考虑如下问题：
+     *   只有一个节点时，该节点在由自己组成的环中编号为1，记为Num(1)=1
+     *   在由两个节点组成的环中，幸存节点的编号假设为Num(2)
+     *   ......
+     *   在由i-1个节点组成的环中，幸存节点的编号记为Num(i-1)
+     *   在由i个节点组成的环中，幸存节点的编号记为Num(i)
+     *   ......
+     *   在由n个节点组成的环中，幸存节点的编号记为Num(n)
+     * 3.已知Num(1)=1，找出Num(i-1)和Num(i)之间的关系
+     *   1）假设现在共有i个节点
+     */
+
+    /**
+     * 进阶方法
      *
      * @param head
      * @param m
@@ -65,7 +79,7 @@ public class JosephusProblem {
 
     public static void main(String[] args) {
         JosephusProblem joseph = new JosephusProblem();
-        Node head = NodeUtil.createLinkNode(1, 13, 1, true);
-        NodeUtil.printLoopLinkNode(joseph.JosephusKill(head, 4));
+        Node head = NodeUtil.createLinkNode(1, 5, 1, true);
+        NodeUtil.printLoopLinkNode(joseph.JosephusKill(head, 3));
     }
 }
