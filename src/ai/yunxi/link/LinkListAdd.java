@@ -98,6 +98,61 @@ public class LinkListAdd {
         return node;
     }
 
+    /**
+     * 方法3：利用链表的逆序求解，可以省掉用栈的空间
+     */
+    public Node addLinkList3(Node head1, Node head2) {
+        Node head11 = reverseLink(head1);
+        Node head22 = reverseLink(head2);
+
+        //对逆序链表的每一个节点求和
+        int carryBit = 0;
+        int num1;
+        int num2;
+        Node node = null;
+        Node pre = null;
+        Node cur1 = head11;
+        Node cur2 = head22;
+        while (cur1 != null || cur2 != null) {
+            num1 = cur1 == null ? 0 : cur1.value;
+            num2 = cur2 == null ? 0 : cur2.value;
+            int num = num1 + num2 + carryBit;
+            if (num >= 10) {
+                carryBit = 1;
+            } else {
+                carryBit = 0;
+            }
+
+            node = new Node(num < 10 ? num : num - 10);
+            node.next = pre;
+            pre = node;
+            cur1 = cur1 == null ? null : cur1.next;
+            cur2 = cur2 == null ? null : cur2.next;
+        }
+
+        // 最后一次求和如果有进位，需在链表头再补一位
+        if (carryBit > 0) {
+            node = new Node(carryBit);
+            node.next = pre;
+        }
+        return node;
+    }
+
+    //逆序链表，注意都用新节点保存，不影响原链表
+    public Node reverseLink(Node head) {
+        Node prev = null;
+        Node next;
+        Node newNode;
+        while (head != null) {
+            next = head.next;
+            newNode = new Node(head.value);
+            newNode.next = prev;
+            prev = newNode;
+            head = next;
+        }
+        return prev;
+    }
+
     public static void main(String[] args) {
         Node head1 = new Node(9);
         Node node1 = new Node(3);
@@ -111,5 +166,6 @@ public class LinkListAdd {
         LinkListAdd listAdd = new LinkListAdd();
         NodeUtil.printLinkNode(listAdd.addLinkList1(head1, head2));
         NodeUtil.printLinkNode(listAdd.addLinkList2(head1, head2));
+        NodeUtil.printLinkNode(listAdd.addLinkList3(head1, head2));
     }
 }

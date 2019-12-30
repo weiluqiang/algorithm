@@ -15,7 +15,7 @@ public class HyperLogLog {
     private final double alphaMM;
 
     /**
-     * rsd = 1.04/sqrt(m)
+     * rsd = 1.106/sqrt(m)
      *
      * @param rsd 相对标准偏差
      */
@@ -24,7 +24,7 @@ public class HyperLogLog {
     }
 
     /**
-     * accuracy = 1.04/sqrt(2^log2m)
+     * accuracy = 1.106/sqrt(2^log2m)
      *
      * @param log2m
      */
@@ -44,11 +44,11 @@ public class HyperLogLog {
     }
 
     /**
-     * rsd = 1.04 / sqrt(m)
-     * m = (1.04 / rsd)^2
+     * rsd = 1.106 / sqrt(m)
+     * m = (1.106 / rsd)^2
      *
      * @param rsd 相对标准偏差
-     * @return
+     * @return log2m = log2((1.106 / rsd)^2)
      */
     private static int log2m(double rsd) {
         return (int) (Math.log((1.106 / rsd) * (1.106 / rsd)) / Math.log(2));
