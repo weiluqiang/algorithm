@@ -21,11 +21,8 @@ public class RegisterSet {
         this.count = count;
 
         if (initialValues == null) {
-            /**
-             * 分配(m / 6)个int给M
-             *
-             * 因为一个register占五位，所以每个int（32位）有6个register
-             */
+            // 分配(m / 6)个int给M
+            // 因为一个register占五位，所以每个int（32位）有6个register
             this.M = new int[getSizeForCount(count)];
         } else {
             this.M = initialValues;
@@ -86,7 +83,7 @@ public class RegisterSet {
 
                 int thisVal = (this.M[bucket] & mask);
                 int thatVal = (that.M[bucket] & mask);
-                word |= (thisVal < thatVal) ? thatVal : thisVal;
+                word |= Math.max(thisVal, thatVal);
             }
             this.M[bucket] = word;
         }

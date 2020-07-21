@@ -26,15 +26,12 @@ public class HyperLogLog {
     /**
      * accuracy = 1.106/sqrt(2^log2m)
      *
-     * @param log2m
+     * @param log2m m的log值
      */
     public HyperLogLog(int log2m) {
         this(log2m, new RegisterSet(1 << log2m));
     }
 
-    /**
-     * @param registerSet
-     */
     public HyperLogLog(int log2m, RegisterSet registerSet) {
         this.registerSet = registerSet;
         this.log2m = log2m;
@@ -71,7 +68,6 @@ public class HyperLogLog {
      * 添加元素
      *
      * @param o 要被添加的元素
-     * @return
      */
     public boolean offer(Object o) {
         final int x = MurmurHash.hash(o);
@@ -106,7 +102,6 @@ public class HyperLogLog {
      *
      * @param p log2m
      * @param m m
-     * @return
      */
     protected static double getAlphaMM(final int p, final int m) {
         // See the paper.
@@ -125,7 +120,6 @@ public class HyperLogLog {
     /**
      * @param m 桶的数目
      * @param V 桶中0的数目
-     * @return
      */
     protected static double linearCounting(int m, double V) {
         return m * Math.log(m / V);
@@ -134,9 +128,9 @@ public class HyperLogLog {
     public static void main(String[] args) {
         HyperLogLog hyperLogLog = new HyperLogLog(0.1325);//64个桶
         //集合中只有下面这些元素
-        hyperLogLog.offer("hhh");
-        hyperLogLog.offer("mmm");
-        hyperLogLog.offer("mmm");
+        System.out.println(hyperLogLog.offer("hhh"));
+        System.out.println(hyperLogLog.offer("mmm"));
+        System.out.println(hyperLogLog.offer("mmm"));
         //估算基数
         System.out.println(hyperLogLog.cardinality());
     }
