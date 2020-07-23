@@ -61,17 +61,17 @@ public class LinkSelectSort {
         Node n8 = new Node(3);
         Node n9 = new Node(5);
         Node n10 = new Node(10);
-        n1.next = n2;
-        n2.next = n3;
-        n3.next = n4;
-        n4.next = n5;
-        n5.next = n6;
-        n6.next = n7;
-        n7.next = n8;
-        n8.next = n9;
-        n9.next = n10;
+        n10.next = n9;
+        n9.next = n8;
+        n8.next = n7;
+        n7.next = n6;
+        n6.next = n5;
+        n5.next = n4;
+        n4.next = n3;
+        n3.next = n2;
+        n2.next = n1;
 
         LinkSelectSort selectSort = new LinkSelectSort();
-        NodeUtil.printLinkNode(selectSort.selectSort(n1));
+        NodeUtil.printLinkNode(selectSort.selectSort(n10));
     }
 }

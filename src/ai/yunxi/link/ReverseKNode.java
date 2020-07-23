@@ -113,6 +113,6 @@ public class ReverseKNode {
         Node h = NodeUtil.createLinkNode(1, 8, 1);
         Node h1 = reverse.reverseKNode2(h, 4);
         NodeUtil.printLinkNode(h1);
-        NodeUtil.printLinkNode(reverse.reverseKNode2(h1, 4));
+        NodeUtil.printLinkNode(reverse.reverseKNode1(h1, 4));
     }
 }

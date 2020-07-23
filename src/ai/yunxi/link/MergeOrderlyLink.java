@@ -75,7 +75,9 @@ public class MergeOrderlyLink {
                 cur1 = cur1.next;
             } else {
                 next = cur2.next;
-                prev.next = cur2;
+                if (prev != null) {
+                    prev.next = cur2;
+                }
                 cur2.next = cur1;
                 prev = cur2;
                 cur2 = next;
@@ -100,5 +102,6 @@ public class MergeOrderlyLink {
 
         MergeOrderlyLink mergeLink = new MergeOrderlyLink();
         NodeUtil.printLinkNode(mergeLink.merge1(head1, head2));
+        NodeUtil.printLinkNode(mergeLink.merge(head1, head2));
     }
 }

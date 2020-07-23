@@ -73,9 +73,9 @@ public class NodeWithRandom {
 
     public static void main(String[] args) {
         NodeWithRandom nodeWithRandom = new NodeWithRandom();
-        NodeWithRandom.Node head = nodeWithRandom.new Node(1);
-        NodeWithRandom.Node node1 = nodeWithRandom.new Node(2);
-        NodeWithRandom.Node node2 = nodeWithRandom.new Node(3);
+        NodeWithRandom.Node head = new Node(1);
+        NodeWithRandom.Node node1 = new Node(2);
+        NodeWithRandom.Node node2 = new Node(3);
         head.next = node1;
         node1.next = node2;
         head.rand = node2;
@@ -99,7 +99,7 @@ public class NodeWithRandom {
         System.out.print("\n");
     }
 
-    class Node {
+    static class Node {
         public int value;
         public Node next;
         public Node rand;

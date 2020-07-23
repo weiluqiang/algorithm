@@ -22,7 +22,7 @@ public class LinkListAdd {
     public Node addLinkList1(Node head1, Node head2) {
         long sum = listToLong(head1) + listToLong(head2);
         char[] num = String.valueOf(sum).toCharArray();
-        int num0 = (int) ('0');
+        int num0 = '0';
         Node newHead = new Node(num[0] - num0);
         Node pre = newHead;
         for (int i = 1; i < num.length; i++) {
@@ -51,7 +51,7 @@ public class LinkListAdd {
             num[count++] = (char) (cur.value + '0');
             cur = cur.next;
         }
-        return Long.valueOf(new String(num));
+        return Long.parseLong(new String(num));
     }
 
     /**

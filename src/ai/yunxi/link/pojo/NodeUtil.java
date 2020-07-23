@@ -21,7 +21,11 @@ public class NodeUtil {
 
             prev = node;
         }
-        if (isLoop) prev.next = head;
+        if (isLoop) {
+            if (prev != null) {
+                prev.next = head;
+            }
+        }
         return head;
     }
 

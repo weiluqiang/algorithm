@@ -46,6 +46,9 @@ public class Palindrome {
      * 分析可知，回文结构是左右完全对称的，所以只用将一半压入栈，再与另一半的节点对比就能得出结果
      */
     public boolean isPalindrome2(Node head) {
+        if (head == null) {
+            return true;
+        }
         // 找到中间节点
         Node cur = head;//每次移动1步
         Node twoStep = head;//每次移动2步

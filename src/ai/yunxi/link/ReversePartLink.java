@@ -20,11 +20,6 @@ public class ReversePartLink {
      * 1.先判断是否满足1<=from<=to<=N，不满足则直接返回
      * 2.找到第from-1个节点fromPrev和第to+1个节点toNext，把反转的部分先反转，然后正确的链接fromPrev和toNext
      * 3.如果fromPrev为null，则说明反转部分包含头节点，则返回新的头节点，也就是反转部分的最后一个节点，否则返回原来的头节点
-     *
-     * @param head
-     * @param from
-     * @param to
-     * @return
      */
     public Node reversePart(Node head, int from, int to) {
         if (from > to || from < 1) return head;

@@ -23,10 +23,6 @@ public class JosephusProblem {
      * 2.循环遍历每个节点并计数，到第m个节点时，删除该节点
      * 3.把删除节点的前后节点链接，继续遍历，并从头开始计数
      * 4.直到只剩最后一个节点时结束
-     *
-     * @param head
-     * @param m
-     * @return
      */
     public Node JosephusKill(Node head, int m) {
         if (head == null || head.next == head || m <= 1) return head;

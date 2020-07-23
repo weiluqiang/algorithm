@@ -93,27 +93,24 @@ public class NodePartition {
             if (head.value < pivot) {
                 if (smallTail == null) {
                     smallHead = head;
-                    smallTail = head;
                 } else {
                     smallTail.next = head;
-                    smallTail = head;
                 }
+                smallTail = head;
             } else if (head.value == pivot) {
                 if (equalTail == null) {
                     equalHead = head;
-                    equalTail = head;
                 } else {
                     equalTail.next = head;
-                    equalTail = head;
                 }
+                equalTail = head;
             } else {
                 if (bigTail == null) {
                     bigHead = head;
-                    bigTail = head;
                 } else {
                     bigTail.next = head;
-                    bigTail = head;
                 }
+                bigTail = head;
             }
             head = head.next;
         }
@@ -150,7 +147,7 @@ public class NodePartition {
         node5.next = node6;
 
         NodePartition partition = new NodePartition();
-        //NodeUtil.printLinkNode(partition.partition(head, 5));
+        NodeUtil.printLinkNode(partition.partition(head, 5));
         //NodeUtil.printLinkNode(partition.partitionAdvance(head, 0));
         //NodeUtil.printLinkNode(partition.partitionAdvance(head, 1));
         NodeUtil.printLinkNode(partition.partitionAdvance(head, 5));
