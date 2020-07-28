@@ -6,6 +6,7 @@ import ai.yunxi.queue.pojo.Pet;
 import ai.yunxi.queue.pojo.PetEnter;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 /*
@@ -33,73 +34,84 @@ import java.util.Queue;
  * 存取实例需操作两个队列，pollDog或pollCat的时候总队列不能保持先进先出，需遍历总队列
  *
  * 2.必须增加一个计数项来保存pet被放入的顺序，不能改变原来的类结构，考虑新加一个保存类PetEnter
- *
- * @author weiluqiang
- *
  */
 public class DogCatQueue {
 
-	private Queue<PetEnter> dogQueue;
-	private Queue<PetEnter> catQueue;
-	private long count;
+    private final Queue<PetEnter> dogQueue;
+    private final Queue<PetEnter> catQueue;
+    private long count;
 
-	public DogCatQueue() {
-		dogQueue = new LinkedList<>();
-		catQueue = new LinkedList<>();
-		count = 0;
-	}
+    public DogCatQueue() {
+        dogQueue = new LinkedList<>();
+        catQueue = new LinkedList<>();
+        count = 0;
+    }
 
-	public void add(Pet pet) {
-		if (pet.getType().equals("dog")) {
-			dogQueue.add(new PetEnter(pet, count++));
-		} else if (pet.getType().equals("cat")) {
-			catQueue.add(new PetEnter(pet, count++));
-		} else {
-			throw new RuntimeException("pet type error");
-		}
-	}
+    public void add(Pet pet) {
+        if (pet.getType().equals("dog")) {
+            dogQueue.add(new PetEnter(pet, count++));
+        } else if (pet.getType().equals("cat")) {
+            catQueue.add(new PetEnter(pet, count++));
+        } else {
+            throw new RuntimeException("pet type error");
+        }
+    }
 
-	public Pet pollPet() {
-		if (!dogQueue.isEmpty() && !catQueue.isEmpty()) {
-			if (dogQueue.peek().getCount() < catQueue.peek().getCount()) {
-				return dogQueue.poll().getPet();
-			} else {
-				return catQueue.poll().getPet();
-			}
-		} else if (!dogQueue.isEmpty()) {
-			return dogQueue.poll().getPet();
-		} else if (!catQueue.isEmpty()) {
-			return catQueue.poll().getPet();
-		} else {
-			throw new RuntimeException("queue is empty");
-		}
-	}
+    public Pet pollPet() {
+        if (!dogQueue.isEmpty() && !catQueue.isEmpty()) {
+            long count1 = dogQueue.peek().getCount();
+            assert catQueue.peek() != null;
+            long count2 = catQueue.peek().getCount();
+            if (count1 < count2) {
+                return Objects.requireNonNull(dogQueue.poll()).getPet();
+            } else {
+                return Objects.requireNonNull(catQueue.poll()).getPet();
+            }
+        } else if (!dogQueue.isEmpty()) {
+            return dogQueue.poll().getPet();
+        } else if (!catQueue.isEmpty()) {
+            return catQueue.poll().getPet();
+        } else {
+            throw new RuntimeException("queue is empty");
+        }
+    }
 
-	public Dog pollDog() {
-		if (!dogQueue.isEmpty()) {
-			return (Dog) dogQueue.poll().getPet();
-		} else {
-			throw new RuntimeException("dog queue is empty");
-		}
-	}
+    public Dog pollDog() {
+        if (!dogQueue.isEmpty()) {
+            return (Dog) dogQueue.poll().getPet();
+        } else {
+            throw new RuntimeException("dog queue is empty");
+        }
+    }
 
-	public Cat pollCat() {
-		if (!catQueue.isEmpty()) {
-			return (Cat) catQueue.poll().getPet();
-		} else {
-			throw new RuntimeException("cat queue is empty");
-		}
-	}
+    public Cat pollCat() {
+        if (!catQueue.isEmpty()) {
+            return (Cat) catQueue.poll().getPet();
+        } else {
+            throw new RuntimeException("cat queue is empty");
+        }
+    }
 
-	public boolean isEmpty() {
-		return dogQueue.isEmpty() && catQueue.isEmpty();
-	}
+    public boolean isEmpty() {
+        return dogQueue.isEmpty() && catQueue.isEmpty();
+    }
 
-	public boolean isDogEmpty() {
-		return dogQueue.isEmpty();
-	}
+    public boolean isDogEmpty() {
+        return dogQueue.isEmpty();
+    }
 
-	public boolean isCatEmpty() {
-		return catQueue.isEmpty();
-	}
+    public boolean isCatEmpty() {
+        return catQueue.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        DogCatQueue queue = new DogCatQueue();
+        queue.add(new Dog());
+        queue.add(new Cat());
+        System.out.println(queue.isCatEmpty());
+        System.out.println(queue.isDogEmpty());
+        System.out.println(queue.pollCat());
+        System.out.println(queue.pollDog());
+        System.out.println(queue.pollPet());
+    }
 }

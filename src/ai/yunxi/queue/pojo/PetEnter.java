@@ -2,8 +2,8 @@ package ai.yunxi.queue.pojo;
 
 public class PetEnter {
 
-    private Pet pet;
-    private long count;
+    private final Pet pet;
+    private final long count;
 
     public PetEnter(Pet pet, long count) {
         this.pet = pet;
@@ -14,15 +14,7 @@ public class PetEnter {
         return pet;
     }
 
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
     public long getCount() {
         return count;
-    }
-
-    public void setCount(long count) {
-        this.count = count;
     }
 }

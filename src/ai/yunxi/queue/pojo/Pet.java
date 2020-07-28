@@ -2,7 +2,7 @@ package ai.yunxi.queue.pojo;
 
 public class Pet {
 
-    private String type;
+    private final String type;
 
     public Pet(String type) {
         this.type = type;
@@ -10,9 +10,5 @@ public class Pet {
 
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }
