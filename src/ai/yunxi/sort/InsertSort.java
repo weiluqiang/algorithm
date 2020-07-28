@@ -1,5 +1,7 @@
 package ai.yunxi.sort;
 
+import java.util.Arrays;
+
 // 插入排序
 public class InsertSort {
 
@@ -32,7 +34,7 @@ public class InsertSort {
             int temp = array[i];
             int left = 0;
             int right = i - 1;
-            int mid = 0;
+            int mid;
             while (left <= right) {
                 mid = (left + right) / 2;
                 if (temp < array[mid]) {
@@ -41,9 +43,12 @@ public class InsertSort {
                     left = mid + 1;
                 }
             }
-            for (int j = i - 1; j >= left; j--) {
-                array[j + 1] = array[j];
+            if (i - left >= 0) {
+                System.arraycopy(array, left, array, left + 1, i - left);
             }
+            //for (int j = i - 1; j >= left; j--) {
+            //    array[j + 1] = array[j];
+            //}
             if (left != i) {
                 array[left] = temp;
             }
@@ -62,7 +67,7 @@ public class InsertSort {
         int temp, d = array.length / 2;
         while (d > 0) {
             for (int x = 0; x < d; x++) {
-                for (int i = x + d; i < d; i = i + d) {
+                for (int i = x; i < array.length; i = i + d) {
                     temp = array[i];
                     int j;
                     for (j = i - d; j >= 0 && array[j] > temp; j = j - d) {
@@ -71,7 +76,16 @@ public class InsertSort {
                     array[j + d] = temp;
                 }
             }
-            d = d / 2;
+            d /= 2;
         }
+    }
+
+    public static void main(String[] args) {
+        InsertSort sort = new InsertSort();
+        int[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        sort.directInsert(arr);
+        sort.dichotomy(arr);
+        sort.shell(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

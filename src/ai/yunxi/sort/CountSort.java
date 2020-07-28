@@ -1,5 +1,7 @@
 package ai.yunxi.sort;
 
+import java.util.Arrays;
+
 // 计数排序
 public class CountSort {
 
@@ -20,8 +22,8 @@ public class CountSort {
         }
         // 构建数组bucket来存储array中值等于bucket坐标的元素个数
         int[] bucket = new int[max - min + 1];
-        for (int i = 0; i < array.length; i++) {
-            bucket[array[i] - min]++;
+        for (int value : array) {
+            bucket[value - min]++;
         }
         // 从bucket依次取数，取值为bucket坐标
         int n = 0;
@@ -31,5 +33,12 @@ public class CountSort {
                 bucket[i]--;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        CountSort sort = new CountSort();
+        int[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        sort.countSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

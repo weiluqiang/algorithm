@@ -1,5 +1,7 @@
 package ai.yunxi.sort;
 
+import java.util.Arrays;
+
 // 交换排序
 public class SwapSort {
 
@@ -29,19 +31,33 @@ public class SwapSort {
      * 通过一趟扫描，将待排序列分成两部分,一部分比基准元素小,一部分大于等于基准元素,
      * 此时基准元素在其排好序后的正确位置,然后再用同样的方法递归地排序划分的两部分。
      */
-    public void quick(int[] array) {
+    public void quick(int[] array, int method) {
         if (array.length > 0) {
-            quickSort(array, 0, array.length - 1);
+            if (method == 1) {
+                quickSort(array, 0, array.length - 1);
+            } else {
+                quickSortRandom(array, 0, array.length - 1);
+            }
         }
     }
 
-    public void quickSort(int[] array, int low, int high) {
+    private void quickSort(int[] array, int low, int high) {
         if (low < high) {
             int index = partitionFirst(array, low, high);
             if (index > low)
                 quickSort(array, low, index - 1);
             if (index < high)
                 quickSort(array, index + 1, high);
+        }
+    }
+
+    private void quickSortRandom(int[] array, int low, int high) {
+        if (low < high) {
+            int index = partitionRandom(array, low, high);
+            if (index > low)
+                quickSortRandom(array, low, index - 1);
+            if (index < high)
+                quickSortRandom(array, index + 1, high);
         }
     }
 
@@ -61,16 +77,15 @@ public class SwapSort {
 
     // 以第一个元素为基准进行分区，把小于基准值的交换到数组左端，大于基准值的交换到右端
     private int partitionFirst(int[] array, int low, int high) {
-        int pivot = low;//选择第一个元素为基准
         int index = low;//记录小于基准元素的当前位置
         for (int i = low + 1; i <= high; i++) {
-            if (array[i] <= array[pivot]) {
+            if (array[i] <= array[low]) {
                 index++;
                 swap(array, i, index);
             }
         }
         // 最后交换index与pivot，把基准元素调整到中间
-        swap(array, index, pivot);
+        swap(array, index, low);
         return index;
     }
 
@@ -79,5 +94,14 @@ public class SwapSort {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        SwapSort sort = new SwapSort();
+        int[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        sort.bubble(arr);
+        sort.quick(arr, 1);
+        sort.quick(arr, 2);
+        System.out.println(Arrays.toString(arr));
     }
 }

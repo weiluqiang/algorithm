@@ -1,6 +1,7 @@
 package ai.yunxi.sort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // 桶排序
@@ -26,20 +27,25 @@ public class BucketSort {
         List<List<Integer>> bucketList = new ArrayList<>(bucketCount);
         List<Integer> resultList = new ArrayList<>();
         for (int i = 0; i < bucketCount; i++) {
-            bucketList.add(new ArrayList<Integer>());
+            bucketList.add(new ArrayList<>());
         }
-        for (int i = 0; i < array.size(); i++) {
-            bucketList.get((array.get(i) - min) / bucketSize).add(array.get(i));
+        for (int i : array) {
+            bucketList.get((i - min) / bucketSize).add(i);
         }
         // 从bucket里循环取数
         for (int i = 0; i < bucketCount; i++) {
             if (bucketCount == 1) bucketSize--;
             // 对每个桶进行排序
             List<Integer> temp = bucketSort(bucketList.get(i), bucketSize);
-            for (int j = 0; j < temp.size(); j++) {
-                resultList.add(temp.get(j));
-            }
+            resultList.addAll(temp);
         }
         return resultList;
+    }
+
+    public static void main(String[] args) {
+        BucketSort sort = new BucketSort();
+        Integer[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        List<Integer> array = Arrays.asList(arr);
+        System.out.println(sort.bucketSort(array, 3));
     }
 }

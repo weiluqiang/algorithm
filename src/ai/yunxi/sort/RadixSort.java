@@ -1,6 +1,7 @@
 package ai.yunxi.sort;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // 基数排序
@@ -14,8 +15,8 @@ public class RadixSort {
     public void radixSort(int[] array) {
         // 查找最大值
         int max = 0;
-        for (int i = 0; i < array.length; i++) {
-            max = Math.max(max, array[i]);
+        for (int value : array) {
+            max = Math.max(max, value);
         }
         // 判断最大位数
         int digit = 0;
@@ -31,19 +32,25 @@ public class RadixSort {
         // 进行digit次分配和收集
         for (int i = 0; i < digit; i++) {
             // 将数据按每一位上的数值分配
-            for (int j = 0; j < array.length; j++) {
-                int index = array[j] % (int) Math.pow(10, i + 1) / (int) Math.pow(10, i);
-                buckets.get(index).add(array[j]);
+            for (int value : array) {
+                int index = value % (int) Math.pow(10, i + 1) / (int) Math.pow(10, i);
+                buckets.get(index).add(value);
             }
             // 按顺序收集
             int count = 0;
-            for (int j = 0; j < buckets.size(); j++) {
-                List<Integer> bucket = buckets.get(j);
-                for (int m = 0; m < bucket.size(); m++) {
-                    array[count++] = bucket.get(m);
+            for (List<Integer> bucket : buckets) {
+                for (int integer : bucket) {
+                    array[count++] = integer;
                 }
                 bucket.clear();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        RadixSort sort = new RadixSort();
+        int[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        sort.radixSort(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }

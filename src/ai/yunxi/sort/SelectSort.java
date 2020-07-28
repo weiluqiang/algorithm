@@ -1,5 +1,7 @@
 package ai.yunxi.sort;
 
+import java.util.Arrays;
+
 // 选择排序
 public class SelectSort {
 
@@ -31,10 +33,14 @@ public class SelectSort {
      * 这时堆的根节点的数最大，然后将根节点与堆的最后一个节点交换。然后对前面(n-1)个数重新调整使之成为堆。
      * 依此类推，直到只有两个节点的堆，并对它们作交换，最后得到有n个节点的有序序列。
      */
-    public void heapSort(int[] array) {
+    public void heapSort(int[] array, int method) {
         int length = array.length;
         // 构建一个最大堆
-        buildMaxHeap(array, length);
+        if (method == 1) {
+            buildMaxHeap(array, length);
+        } else {
+            buildMaxHeap2(array, length);
+        }
         // 将堆首位(最大值)与末位交换，然后调整堆
         while (length > 0) {
             swap(array, 0, length - 1);
@@ -82,8 +88,8 @@ public class SelectSort {
             while (k * 2 + 1 <= lastIndex) {
                 // k节点的左子节点的索引
                 int biggerIndex = 2 * k + 1;
-                // 如果biggerIndex小于lastIndex，即biggerIndex+1代表的k节点的右子节点存在
-                if (biggerIndex < lastIndex) {
+                // 如果biggerIndex小于lastIndex-1，即biggerIndex+1代表的k节点的右子节点存在
+                if (biggerIndex < lastIndex - 1) {
                     // 若果右子节点的值较大
                     if (data[biggerIndex] < data[biggerIndex + 1]) {
                         // biggerIndex总是记录较大子节点的索引
@@ -108,5 +114,14 @@ public class SelectSort {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        SelectSort sort = new SelectSort();
+        int[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        sort.simpleSelect(arr);
+        sort.heapSort(arr, 1);
+        sort.heapSort(arr, 2);
+        System.out.println(Arrays.toString(arr));
     }
 }

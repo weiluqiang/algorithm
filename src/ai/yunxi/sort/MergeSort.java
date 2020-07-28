@@ -37,4 +37,10 @@ public class MergeSort {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        MergeSort sort = new MergeSort();
+        int[] arr = {15, 3, 8, 5, 98, 23, 88, 53, 1, 10, 7, 19};
+        System.out.println(Arrays.toString(sort.mergeSort(arr)));
+    }
 }
