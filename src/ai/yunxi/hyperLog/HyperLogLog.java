@@ -51,9 +51,9 @@ public class HyperLogLog {
         return (int) (Math.log((1.106 / rsd) * (1.106 / rsd)) / Math.log(2));
     }
 
-    private static double rsd(int log2m) {
-        return 1.106 / Math.sqrt(Math.exp(log2m * Math.log(2)));
-    }
+//    private static double rsd(int log2m) {
+//        return 1.106 / Math.sqrt(Math.exp(log2m * Math.log(2)));
+//    }
 
     public boolean offerHashed(int hashedValue) {
         // j 代表第几个桶,取hashedValue的前log2m位即可

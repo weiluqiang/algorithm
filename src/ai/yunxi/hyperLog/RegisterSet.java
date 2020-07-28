@@ -46,11 +46,11 @@ public class RegisterSet {
         }
     }
 
-    public void set(int position, int value) {
-        int bucketPos = position / LOG2_BITS_PER_WORD;
-        int shift = REGISTER_SIZE * (position - (bucketPos * LOG2_BITS_PER_WORD));
-        this.M[bucketPos] = (this.M[bucketPos] & ~(0x1f << shift)) | (value << shift);
-    }
+//    public void set(int position, int value) {
+//        int bucketPos = position / LOG2_BITS_PER_WORD;
+//        int shift = REGISTER_SIZE * (position - (bucketPos * LOG2_BITS_PER_WORD));
+//        this.M[bucketPos] = (this.M[bucketPos] & ~(0x1f << shift)) | (value << shift);
+//    }
 
     public int get(int position) {
         int bucketPos = position / LOG2_BITS_PER_WORD;
@@ -75,27 +75,27 @@ public class RegisterSet {
         }
     }
 
-    public void merge(RegisterSet that) {
-        for (int bucket = 0; bucket < M.length; bucket++) {
-            int word = 0;
-            for (int j = 0; j < LOG2_BITS_PER_WORD; j++) {
-                int mask = 0x1f << (REGISTER_SIZE * j);
+//    public void merge(RegisterSet that) {
+//        for (int bucket = 0; bucket < M.length; bucket++) {
+//            int word = 0;
+//            for (int j = 0; j < LOG2_BITS_PER_WORD; j++) {
+//                int mask = 0x1f << (REGISTER_SIZE * j);
+//
+//                int thisVal = (this.M[bucket] & mask);
+//                int thatVal = (that.M[bucket] & mask);
+//                word |= Math.max(thisVal, thatVal);
+//            }
+//            this.M[bucket] = word;
+//        }
+//    }
 
-                int thisVal = (this.M[bucket] & mask);
-                int thatVal = (that.M[bucket] & mask);
-                word |= Math.max(thisVal, thatVal);
-            }
-            this.M[bucket] = word;
-        }
-    }
+//    int[] readOnlyBits() {
+//        return M;
+//    }
 
-    int[] readOnlyBits() {
-        return M;
-    }
-
-    public int[] bits() {
-        int[] copy = new int[size];
-        System.arraycopy(M, 0, copy, 0, M.length);
-        return copy;
-    }
+//    public int[] bits() {
+//        int[] copy = new int[size];
+//        System.arraycopy(M, 0, copy, 0, M.length);
+//        return copy;
+//    }
 }
