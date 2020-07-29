@@ -18,17 +18,18 @@ import java.util.Stack;
  * <p>
  * 但实际操作中，只有第二步可直接完成，而第一、三步又成为移动的新问题。以上操作的实质是把移动n个盘子的问题转化为移动n-1个盘
  * 依据该原理，层层递推，即可将原问题转化为解决移动n-2、n-3 … 3、2，直到移动1个盘的操作
- *
- * @author weiluqiang
  */
 public class HanoiStack {
 
     public static void main(String[] args) {
         HanoiStack hanoiStack = new HanoiStack();
-        // hanoiStack.process(5, "A", "C", "B");
-        // hanoiStack.process2(4, "L", "R", "M");
-        // hanoiStack.process3(4);
-        hanoiStack.process4(4);
+        hanoiStack.process(3, "A", "C", "B");
+        System.out.println("------------");
+        hanoiStack.process2(3, "L", "R", "M");
+        System.out.println("------------");
+        hanoiStack.process3(3);
+        System.out.println("------------");
+        hanoiStack.process4(3);
     }
 
     /*
@@ -128,11 +129,9 @@ public class HanoiStack {
     private int getStep(int prevStep, int l, int r, int m) {
         switch (prevStep) {
             case 1:
-                return r < m ? 3 : 4;
             case 2:
                 return r < m ? 3 : 4;
             case 3:
-                return l < m ? 1 : 2;
             case 4:
                 return l < m ? 1 : 2;
 

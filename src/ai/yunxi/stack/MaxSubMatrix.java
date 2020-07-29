@@ -21,13 +21,13 @@ public class MaxSubMatrix {
         int maxSize = 0;
         //高度数组
         int[] height = new int[map[0].length];
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
+        for (int[] arr : map) {
+            for (int j = 0; j < arr.length; j++) {
                 //计算每一行的高度
                 //第一行：height[j]初始值为0，则map值为0时即为0，为1时即为1
                 //第二行：height[j]此时为第一行的高度，map值为0时即为0，为1时用第一行的高度+1
                 //剩下的行以此类推
-                height[j] = map[i][j] == 0 ? 0 : height[j] + 1;
+                height[j] = arr[j] == 0 ? 0 : height[j] + 1;
             }
 
             //得到一整行的高度数组后，调用maxRecArea方法获得此行中的最大值
@@ -97,12 +97,12 @@ public class MaxSubMatrix {
         System.out.println(matrix.maxRecSize(arr2));
     }
 
-    private static void print_array(int[][] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                System.out.print(arr[i][j] + "  ");
+    private static void print_array(int[][] array) {
+        for (int[] arr : array) {
+            for (int i : arr) {
+                System.out.print(i + "  ");
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 }
