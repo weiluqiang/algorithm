@@ -101,7 +101,7 @@ public class ForeachTree {
      * 新栈中节点入栈时，必须是先左子节点，然后是右子节点
      * 当新栈取出的是右子节点时，那么下一个取出的就是此节点的左兄弟节点
      * 而取出的是左子节点时，则表示该子树的左右子树都完成入栈了，那么
-     *
+     * <p>
      * 子树入栈的时候，同样也是先根节点入栈，然后右子树入栈，不断重复，直到右子树没有了
      * 此时可以把当前节点的左子树入栈，等左子树都入栈了，那么当前节点的父节点的右子树也都完成入栈
      * 找到它的父节点的左子节点，同样把左子树入栈
@@ -158,23 +158,15 @@ public class ForeachTree {
     }
 
     public static void main(String[] args) {
-        TreeNode head = new TreeNode(1);
-        TreeNode n1 = new TreeNode(2);
-        TreeNode n2 = new TreeNode(3);
-        TreeNode n3 = new TreeNode(4);
-        TreeNode n4 = new TreeNode(5);
-        TreeNode n5 = new TreeNode(6);
-        TreeNode n6 = new TreeNode(7);
         TreeNode n7 = new TreeNode(8);
         TreeNode n8 = new TreeNode(9);
-        head.left = n1;
-        head.right = n2;
-        n1.left = n3;
-        n1.right = n4;
-        n2.left = n5;
-        n2.right = n6;
-        n5.left = n7;
-        n5.right = n8;
+        TreeNode n5 = new TreeNode(6, n7, n8);
+        TreeNode n6 = new TreeNode(7);
+        TreeNode n2 = new TreeNode(3, n5, n6);
+        TreeNode n3 = new TreeNode(4);
+        TreeNode n4 = new TreeNode(5);
+        TreeNode n1 = new TreeNode(2, n3, n4);
+        TreeNode head = new TreeNode(1, n1, n2);
 
         ForeachTree foreach = new ForeachTree();
         foreach.preOrder(head);
