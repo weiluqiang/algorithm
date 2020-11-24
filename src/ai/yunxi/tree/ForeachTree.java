@@ -158,15 +158,15 @@ public class ForeachTree {
     }
 
     public static void main(String[] args) {
-        TreeNode n7 = new TreeNode(8);
-        TreeNode n8 = new TreeNode(9);
-        TreeNode n5 = new TreeNode(6, n7, n8);
-        TreeNode n6 = new TreeNode(7);
-        TreeNode n2 = new TreeNode(3, n5, n6);
-        TreeNode n3 = new TreeNode(4);
-        TreeNode n4 = new TreeNode(5);
-        TreeNode n1 = new TreeNode(2, n3, n4);
-        TreeNode head = new TreeNode(1, n1, n2);
+        TreeNode n8 = new TreeNode(8);
+        TreeNode n9 = new TreeNode(9);
+        TreeNode n6 = new TreeNode(6, n8, n9);
+        TreeNode n7 = new TreeNode(7);
+        TreeNode n3 = new TreeNode(3, n6, n7);
+        TreeNode n4 = new TreeNode(4);
+        TreeNode n5 = new TreeNode(5);
+        TreeNode n2 = new TreeNode(2, n4, n5);
+        TreeNode head = new TreeNode(1, n2, n3);
 
         ForeachTree foreach = new ForeachTree();
         foreach.preOrder(head);
