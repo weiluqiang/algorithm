@@ -69,21 +69,7 @@ public class MaxSubBST {
     }
 
     public static void main(String[] args) {
-        TreeNode n41 = new TreeNode(2);
-        TreeNode n42 = new TreeNode(5);
-        TreeNode n43 = new TreeNode(11);
-        TreeNode n44 = new TreeNode(15);
-        TreeNode n31 = new TreeNode(4, n41, n42);
-        TreeNode n32 = new TreeNode(14, n43, n44);
-        TreeNode n33 = new TreeNode(20);
-        TreeNode n34 = new TreeNode(16);
-        TreeNode n21 = new TreeNode(0);
-        TreeNode n22 = new TreeNode(3);
-        TreeNode n23 = new TreeNode(10, n31, n32);
-        TreeNode n24 = new TreeNode(13, n33, n34);
-        TreeNode n11 = new TreeNode(1, n21, n22);
-        TreeNode n12 = new TreeNode(12, n23, n24);
-        TreeNode head = new TreeNode(6, n11, n12);
+        TreeNode head = TreeNode.getDefault2();
         MaxSubBST subBST = new MaxSubBST();
         System.out.println(subBST.biggestBST(head).value);
     }
