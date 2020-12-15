@@ -49,4 +49,9 @@ public class TreeNode {
         TreeNode n12 = new TreeNode(12, n23, n24);
         return new TreeNode(6, n11, n12);
     }
+
+    @Override
+    public String toString() {
+        return "value: " + value;
+    }
 }
