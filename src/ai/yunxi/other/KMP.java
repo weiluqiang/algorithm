@@ -60,11 +60,6 @@ public class KMP {
             return -1;
     }
 
-    public int kmpSearch(String s, String p) {
-        int[] next = getOptimalNext(p);
-        return kmpSearch(s, p, next);
-    }
-
     // 获取模式字符串p的next数组，可以采用递归方式和循环的方式
     // 由于查找next数组的逻辑，本身就是字符串p的一种自匹配，所以也适用于KMP算法，与上面的kmpSearch很相似
     public int[] getNext(String p) {
