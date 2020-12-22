@@ -1,6 +1,7 @@
 package ai.yunxi.tree;
 
 import ai.yunxi.tree.pojo.TreeNode;
+import ai.yunxi.tree.pojo.TreeUtil;
 
 import java.util.Deque;
 import java.util.HashMap;
@@ -265,7 +266,7 @@ public class MaxTopologyBST {
     }
 
     public static void main(String[] args) {
-        TreeNode head = TreeNode.getDefault2();
+        TreeNode head = TreeUtil.getDefault2();
         MaxTopologyBST topology = new MaxTopologyBST();
         System.out.println(topology.biggestBST1(head));
         System.out.println(topology.biggestBST2(head));
