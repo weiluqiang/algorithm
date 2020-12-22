@@ -1,6 +1,7 @@
 package ai.yunxi.tree;
 
 import ai.yunxi.tree.pojo.TreeNode;
+import ai.yunxi.tree.pojo.TreeUtil;
 
 /**
  * 遍历二叉树的神级方法
@@ -174,7 +175,7 @@ public class MorrisForeach {
     }
 
     public static void main(String[] args) {
-        TreeNode head = TreeNode.getDefault();
+        TreeNode head = TreeUtil.getDefault();
         MorrisForeach morris = new MorrisForeach();
         morris.inOrder(head);
         System.out.println();
