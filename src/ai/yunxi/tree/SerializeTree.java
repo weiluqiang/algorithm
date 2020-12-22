@@ -1,6 +1,7 @@
 package ai.yunxi.tree;
 
 import ai.yunxi.tree.pojo.TreeNode;
+import ai.yunxi.tree.pojo.TreeUtil;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -131,7 +132,7 @@ public class SerializeTree {
     }
 
     public static void main(String[] args) {
-        TreeNode head = TreeNode.getDefault();
+        TreeNode head = TreeUtil.getDefault();
         SerializeTree serialize = new SerializeTree();
         String str = serialize.serialize(head);
         System.out.println(str);
