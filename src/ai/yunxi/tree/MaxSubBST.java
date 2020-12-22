@@ -1,6 +1,7 @@
 package ai.yunxi.tree;
 
 import ai.yunxi.tree.pojo.TreeNode;
+import ai.yunxi.tree.pojo.TreeUtil;
 
 /**
  * 找到二叉树中的最大搜索二叉子树
@@ -69,7 +70,7 @@ public class MaxSubBST {
     }
 
     public static void main(String[] args) {
-        TreeNode head = TreeNode.getDefault2();
+        TreeNode head = TreeUtil.getDefault2();
         MaxSubBST subBST = new MaxSubBST();
         System.out.println(subBST.biggestBST(head).value);
     }
