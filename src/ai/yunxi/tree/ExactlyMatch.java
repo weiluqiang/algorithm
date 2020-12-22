@@ -2,7 +2,9 @@ package ai.yunxi.tree;
 
 import ai.yunxi.other.KMP;
 import ai.yunxi.tree.pojo.TreeNode;
+import ai.yunxi.tree.pojo.TreeUtil;
 
+import javax.rmi.CORBA.Util;
 import java.util.Stack;
 
 /**
@@ -118,22 +120,12 @@ public class ExactlyMatch {
     }
 
     public static void main(String[] args) {
-        TreeNode n9 = new TreeNode(9);
-        TreeNode n8 = new TreeNode(8);
-        TreeNode n7 = new TreeNode(7);
-        TreeNode n6 = new TreeNode(6);
-        TreeNode n5 = new TreeNode(5, n9, null);
-        TreeNode n4 = new TreeNode(4, null, n8);
-        TreeNode n3 = new TreeNode(3, n6, n7);
-        TreeNode n2 = new TreeNode(2, n4, n5);
-        TreeNode t1 = new TreeNode(1, n2, n3);
-
+        TreeNode t1 = TreeUtil.getDefault3();
         TreeNode o9 = new TreeNode(9);
         TreeNode o8 = new TreeNode(8);
         TreeNode o5 = new TreeNode(5, o9, null);
         TreeNode o4 = new TreeNode(4, null, o8);
         TreeNode t2 = new TreeNode(2, o4, o5);
-
         TreeNode d8 = new TreeNode(8);
         TreeNode d5 = new TreeNode(5);
         TreeNode d4 = new TreeNode(4, null, d8);
