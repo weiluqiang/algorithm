@@ -1,6 +1,7 @@
 package ai.yunxi.tree;
 
 import ai.yunxi.tree.pojo.TreeNode;
+import ai.yunxi.tree.pojo.TreeUtil;
 
 import java.util.Arrays;
 import java.util.Stack;
@@ -194,14 +195,7 @@ public class AdjustErrorBST {
 
     public static void main(String[] args) {
         AdjustErrorBST error = new AdjustErrorBST();
-        TreeNode n7 = new TreeNode(7);
-        TreeNode n6 = new TreeNode(2);
-        TreeNode n5 = new TreeNode(3);
-        TreeNode n4 = new TreeNode(1);
-        TreeNode n3 = new TreeNode(6, n6, n7);
-        TreeNode n2 = new TreeNode(5, n4, n5);
-        TreeNode head = new TreeNode(4, n2, n3);
-
+        TreeNode head = TreeUtil.getDefault4();
         TreeNode[] err = error.getErrorNodes(head);
         System.out.println(Arrays.toString(err));
         TreeNode h2 = error.recoverTree(head);
