@@ -2,6 +2,15 @@ package ai.yunxi.tree.pojo;
 
 public class TreeUtil {
 
+    /**
+     * ------------------1
+     * ------------2-----------3
+     * ----------4-----------5---6
+     * -----7---------8
+     * --9-----10
+     * ---12--11
+     * --13
+     */
     public static TreeNode getDefault() {
         TreeNode n13 = new TreeNode(13);
         TreeNode n12 = new TreeNode(12, n13, null);
@@ -18,6 +27,13 @@ public class TreeUtil {
         return new TreeNode(1, n2, n3);
     }
 
+    /**
+     * -------------6
+     * -----1---------------12
+     * --0----3-------10----------13
+     * ------------4------14----20--16
+     * -----------2-5---11--15
+     */
     public static TreeNode getDefault2() {
         TreeNode n41 = new TreeNode(2);
         TreeNode n42 = new TreeNode(5);
@@ -36,6 +52,12 @@ public class TreeUtil {
         return new TreeNode(6, n11, n12);
     }
 
+    /**
+     * ---------1
+     * -----2-------3
+     * --4-----5---6-7
+     * ---8--9
+     */
     public static TreeNode getDefault3() {
         TreeNode n9 = new TreeNode(9);
         TreeNode n8 = new TreeNode(8);
@@ -48,6 +70,11 @@ public class TreeUtil {
         return new TreeNode(1, n2, n3);
     }
 
+    /**
+     * --------4
+     * ----5------6
+     * --1---3--2---7
+     */
     public static TreeNode getDefault4() {
         TreeNode n7 = new TreeNode(7);
         TreeNode n6 = new TreeNode(2);
